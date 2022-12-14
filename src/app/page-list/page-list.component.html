@@ -1,0 +1,21 @@
+<table class="table is-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Word Count</th>
+            <th>Snippet</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let page of pages">
+            <td>
+                <a [href]=" 'https://en.wikipedia.org?curid=' + page.pageid " target="_blank">
+                    {{page.title}}
+                </a>
+            </td>
+            <td>{{page.wordcount}}</td>
+            <!-- Angular 有避免 XSS Attack 的機制，所以要這樣寫才會顯示有 html tag 的字串 -->
+            <td [innerHTML]="page.snippet"></td>
+        </tr>
+    </tbody>
+</table>
