@@ -8,16 +8,13 @@ import { WikipediaService } from './wikipedia.service';
 })
 export class AppComponent {
   title = 'wiki-search';
-  pages = [];
+  pages: object[] = [];
 
   constructor(private wikipedia: WikipediaService) {}
 
   onTerm(term: string) {
-    // console.log('term from app.component :>> ', term);
-    // const results = this.wikipedia.search(term);
-    // console.log(results);
-    this.wikipedia.search(term).subscribe((response: any) => {
-      this.pages = response.query.search;
+    this.wikipedia.search(term).subscribe((data) => {
+      this.pages = data;
     });
   }
 }
